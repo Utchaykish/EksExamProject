@@ -1,4 +1,4 @@
-# https---github.com-Utchaykish-EksExamProject
+EksExamProject
 
 This Repository Creates Aws Eks clusters using terraform. 
 Deploys two Docker images:the Socks Shop app and the Docker Tweet app(My Image)
