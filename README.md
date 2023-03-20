@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/microservices-demo/microservices-demo.svg?branch=master)](https://travis-ci.org/microservices-demo/microservices-demo)
 
 # Sock Shop : A Microservice Demo Application
@@ -33,6 +34,9 @@ Use [Weave Scope](http://weave.works/products/weave-scope/) or [Weave Cloud](htt
 This has been cloned as a part of this deployment and automation process.
 =======
 # https---github.com-Utchaykish-EksExamProject
+=======
+EksExamProject
+>>>>>>> 5354364 (Update README.md)
 
 This Repository Creates Aws Eks clusters using terraform. 
 Deploys two Docker images:the Socks Shop app and the Docker Tweet app(My Image)
