@@ -1,0 +1,3 @@
+[submodule "socks-app/socks-app/microservices-demo"]
+	path = socks-app/socks-app/microservices-demo
+	url = https://github.com/Utchaykish/microservices-demo.git
