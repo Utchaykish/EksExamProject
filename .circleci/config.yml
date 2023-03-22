@@ -29,18 +29,23 @@ commands:
          command: |
             kubectl apply -f deploy.yaml
          name: Deploy ingress
-
 jobs:
-  build-base-image:
-    machine:
-      image: "ubuntu-2004:current"    
+  build:
+    docker:
+      - image: cimg/base:2021.11
+        auth:
+          username: MY_DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
+      - run:
+          name: "echo an env var that is part of our context"
+          command: |
+            echo $MY_ENV_VAR
       - run:
           name: Build docker image
           command: |
             docker --version
-            echo "$MY_DOCKERHUB_PASSWORD" | docker login -u "$MY_DOCKERHUB_USERNAME" --password-stdin
             docker build -t myimage:1.1.0 .circleci/.
             docker tag myimage:1.1.0 utchaykish/myimage:1.1.0
             docker push utchaykish/myimage:1.1.0
@@ -54,7 +59,7 @@ jobs:
       - run:
           name: Configure infrastructure
           command: |
-            cd .circleci/terraform-cluster
+            cd ./EKS/EKS
             terraform init
             terraform apply -auto-approve
 
@@ -94,7 +99,7 @@ jobs:
           aws-region: us-east-1
       - run:
           command: |
-                      kubectl delete -f deploy.yaml
+            kubectl delete -f deploy.yaml
       - run:
           command: |
             kubectl delete -f ./sock-shop/deploy/kubernetes/manifests-monitoring
@@ -117,7 +122,7 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-base-image
+      - build
       - configure-infra
       - deploy-socks-app:
          requires:
