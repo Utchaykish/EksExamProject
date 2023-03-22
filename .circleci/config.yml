@@ -111,7 +111,7 @@ jobs:
       - run:
           name: Tear down infrastructure
           command: |
-            cd .circleci/Eks
+            cd .circleci/terraform-cluster
             terraform init
             terraform destroy -auto-approve
 workflows:
