@@ -33,7 +33,7 @@ commands:
 jobs:
   build-base-image:
     machine:
-      image: nginx:latest
+      image: "ubuntu-2004:current"    
     steps:
       - checkout
       - run:
@@ -54,7 +54,7 @@ jobs:
       - run:
           name: Configure infrastructure
           command: |
-            cd .circleci/Eks/
+            cd .Eks/
             terraform init
             terraform apply -auto-approve
 
