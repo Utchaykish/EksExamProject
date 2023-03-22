@@ -54,7 +54,7 @@ jobs:
       - run:
           name: Configure infrastructure
           command: |
-            cd .Eks/
+            cd ~/Eks/
             terraform init
             terraform apply -auto-approve
 
