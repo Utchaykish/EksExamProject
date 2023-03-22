@@ -40,7 +40,7 @@ jobs:
           name: Build docker image
           command: |
             docker --version
-            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            echo "$MY_DOCKERHUB_PASSWORD" | docker login -u "$MY_DOCKERHUB_USERNAME" --password-stdin
             docker build -t myimage:1.1.0 .circleci/.
             docker tag myimage:1.1.0 utchaykish/myimage:1.1.0
             docker push utchaykish/myimage:1.1.0
