@@ -13,5 +13,5 @@ Prometheus
 and a whole lot more.
 
 
-Ip address to reach my Docker Image : [utchayngwu.me](utchayngwu.me)
-Ip address to reach my sock-shop : [sock-shop.utcahyngwu.me](sock-shop.utchayngwu.me)
+copy Ip address to reach my Docker Image : [utchayngwu.me](utchayngwu.me)
+copy Ip address to reach my sock-shop : [sock-shop.utcahyngwu.me](sock-shop.utchayngwu.me)
