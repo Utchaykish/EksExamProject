@@ -56,7 +56,6 @@ jobs:
             cd .circleci/Eks
             terraform init
             terraform apply -auto-approve
-
   deploy-socks-app:
     <<: *nImage
     steps:
