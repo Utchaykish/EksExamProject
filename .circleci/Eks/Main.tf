@@ -1,5 +1,5 @@
 module "Networks" {
-  source = "./circleci/Eks/modules/Networks/"
+  source = "./root/Eks/modules/Networks/"
   namespace = var.namespace
   destination_cidr_block = var.destination_cidr_block
   main_vpc_cidr = var.main_vpc_cidr
@@ -9,11 +9,11 @@ module "Networks" {
 }
 
 module "ssh_key" {
-  source = "./circleci/Eks/modules/ssh_key"
+  source = "./root/Eks/modules/ssh_key"
 }
 
 module "eks_cluster" {
-  source = "./circleci/Eks/modules/eks_cluster/"
+  source = "./root/Eks/modules/eks_cluster/"
   namespace = var.namespace
   pub_subnets = module.Networks.public_subnets
   priv_subnets = module.Networks.private_subnets
