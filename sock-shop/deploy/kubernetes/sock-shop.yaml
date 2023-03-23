@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sock-shop
+  template:
+    metadata:
+      labels:
+        app: sock-shop
+    spec:
+      containers:
+      - name: sock-shop
+        image: weaveworksdemos/carts:0.4.8
+        ports:
+        - containerPort: 80
+        env:
+        - name: JAVA_OPTS
+          value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sock-shop
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: sock-shop
