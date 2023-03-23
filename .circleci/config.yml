@@ -15,6 +15,9 @@ defaults:
   - &terraformImage
     docker:
       - image: hashicorp/terraform:1.0.0
+  - &baseImage
+    docker:
+      - image: cimg/base:2022.09
 
 commands:
   connect-eks-to-kubectl:
