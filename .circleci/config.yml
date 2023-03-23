@@ -68,7 +68,7 @@ jobs:
       - run:
           command: |
             cd ./sock-shop/deploy/kubernetes
-            kubectl apply -f manifests
+            kubectl apply -f complete-demo.yaml
           name: deploy applications
       - run:
           command: |
