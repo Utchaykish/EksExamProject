@@ -39,9 +39,9 @@ jobs:
           name: Build docker image
           command: |
             docker --version
-            echo "$DOCKERHUB_PASSWORD" | docker login -u -p "$DOCKERHUB_USERNAME" --password-stdin
-            docker build -t myimage:1.1.0 .circleci/.
-            docker tag myimage:1.1.0 utchaykish/myimage:1.1.0
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker build -t kube:1.0.0 .circleci/.
+            docker tag kube:1.0.0 utchaykish/myimage:1.1.0
             docker push utchaykish/myimage:1.1.0
       
 
@@ -62,12 +62,14 @@ jobs:
       - kubernetes/install:
             kubectl-version: v1.22.0
       - aws-eks/update-kubeconfig-with-authenticator:
+        
           cluster-name: utchaykish-cluster
           aws-region: us-east-1
       - run:
           command: |
-            kubectl apply -f ./sock-shop/deploy/kubernetes/complete-demo.yaml
-          name: deploy monitoring
+            cd sock-shop/deploy/kubernetes
+            kubectl apply -f complete-demo.yaml
+          name: deploy applications
       - run:
           command: |
             kubectl get services
@@ -90,11 +92,7 @@ jobs:
             kubectl delete -f deploy.yaml
       - run:
           command: |
-            kubectl delete -f ./sock-shop/deploy/kubernetes/manifests-monitoring
-          name: Bring down monitoring
-      - run:
-          command: |
-            kubectl delete -f ./sock-shop/deploy/kubernetes/manifests
+            kubectl delete -f ./sock-shop/deploy/kubernetes/complete-demo.yaml
           name: Bring down socks web app
 
   tear-down-infra:
@@ -104,7 +102,7 @@ jobs:
       - run:
           name: Tear down infrastructure
           command: |
-            cd .circleci/terraform-cluster
+            cd .circleci/Eks
             terraform init
             terraform destroy -auto-approve
 workflows:
