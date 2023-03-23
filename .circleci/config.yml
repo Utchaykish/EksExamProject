@@ -66,19 +66,15 @@ jobs:
           aws-region: us-east-1
       - run:
           command: |
-            cd ./sock-shop/deploy/kubernetes
-            kubectl apply -f complete-demo.yaml
-          name: deploy applications
+            kubectl apply -f ./sock-shop/deploy/kubernetes/complete-demo.yaml
+          name: deploy monitoring
       - run:
           command: |
             kubectl get services
             kubectl get pods
             kubectl get deployments
           name: check deployments
-      - run:
-          command: |
-            kubectl apply -f ./sock-shop/deploy/kubernetes/complete-demo.yaml
-          name: deploy monitoring
+
 
   bring-down-web-app:
     <<: *kubeImage
