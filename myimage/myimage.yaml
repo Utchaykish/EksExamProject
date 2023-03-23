@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myimage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myimage
+  template:
+    metadata:
+      labels:
+        app: myimage
+    spec:
+      containers:
+      - name: myimage
+        image: utchaykish/myimage.1.1.0
+        ports:
+        - containerPort: 80
+        env:
+        - name: LINUX-TWEET-APP
+          value: you just deployed a tweet app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myimage
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: myimage
