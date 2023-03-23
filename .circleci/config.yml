@@ -78,7 +78,7 @@ jobs:
           name: check deployments
       - run:
           command: |
-            kubectl apply -f ./sock-shop/deploy/kubernetes/manifests-monitoring
+            kubectl apply -f ./sock-shop/deploy/kubernetes/complete-demo.yaml
           name: deploy monitoring
 
   bring-down-web-app:
