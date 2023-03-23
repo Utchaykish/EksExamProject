@@ -131,6 +131,9 @@ workflows:
   default:
     jobs:
       - build-base-image
+      - build-linux-tweet-images:
+         requires: 
+            - build-base-image
       - configure-infra
       - deploy-socks-app:
          requires:
